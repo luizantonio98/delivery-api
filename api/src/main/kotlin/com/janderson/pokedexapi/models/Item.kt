@@ -10,9 +10,9 @@ data class Item(
         val id: Long,
 
         @Column(name = "name")
-        val name: String,
+        var name: String,
 
         @ManyToOne
         @JoinColumn(name = "item_group_id")
-        val group : ItemGroup
+        var group : ItemGroup
 )

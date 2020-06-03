@@ -7,10 +7,8 @@ import com.janderson.pokedexapi.repositories.StoreRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
 
 
 @RestController
@@ -26,8 +24,31 @@ class ItemController {
     }
 
     @GetMapping("{id}")
-    fun get(pageable: Pageable, @PathVariable id: Long): Item? {
-        return itemRepository.findById(id).orElse(null)
+    fun get(pageable: Pageable, @PathVariable id: Long): ResponseEntity<Item?> {
+        return itemRepository.findById(id).map { i ->
+            ResponseEntity.ok(i!!)
+        }.orElse(ResponseEntity.notFound().build())
     }
 
+    @PostMapping
+    fun create(@RequestBody item: Item): Item? {
+        return itemRepository.save(item)
+    }
+
+    @PutMapping("{id}")
+    fun update(@PathVariable id :Long,
+               @RequestBody item: Item): ResponseEntity<Item?> {
+        return itemRepository.findById(id).map { i ->
+            i!!.group = item.group
+            i.name = item.name
+            ResponseEntity.ok(i)
+        }.orElse(ResponseEntity.notFound().build())
+    }
+
+    @DeleteMapping("{id}")
+    fun delete(@PathVariable id :Long): ResponseEntity<Item?> {
+        return itemRepository.findById(id).map { i ->
+            ResponseEntity.ok(i!!)
+        }.orElse(ResponseEntity.notFound().build())
+    }
 }
