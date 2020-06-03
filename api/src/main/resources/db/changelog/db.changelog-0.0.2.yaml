@@ -1,0 +1,115 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: JandersonCRB
+      changes:
+        - createTable:
+            tableName: stores
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(255)
+              - column:
+                  name: color
+                  type: varchar(255)
+        - createSequence:
+            sequenceName: seq_stores_id
+        - insert:
+            tableName: stores
+            columns:
+              - column:
+                  name: id
+                  valueComputed: nextval('seq_stores_id')
+              - column:
+                  name: name
+                  value: 'Loja de construções do João'
+              - column:
+                  name: color
+                  value: 'FF0000'
+
+
+        - createTable:
+            tableName: item_groups
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: store_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    references: stores(id)
+                    foreignKeyName: fk_item_groups_stores
+        - createSequence:
+            sequenceName: seq_item_groups_id
+        - createTable:
+            tableName: items
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: disabled
+                  type: boolean
+                  defaultValueBoolean: false
+              - column:
+                  name: item_group_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    references: item_groups(id)
+                    foreignKeyName: fk_items_item_groups
+        - createSequence:
+            sequenceName: seq_items_id
+        - insert:
+            tableName: item_groups
+            columns:
+              - column:
+                  name: id
+                  valueComputed: nextval('seq_item_groups_id')
+              - column:
+                  name: name
+                  value: 'Ferramentas'
+              - column:
+                  name: store_id
+                  value: 1
+        - insert:
+            tableName: items
+            columns:
+              - column:
+                  name: id
+                  valueComputed: nextval('seq_items_id')
+              - column:
+                  name: name
+                  value: 'Chave de fenda'
+              - column:
+                  name: item_group_id
+                  value: 1

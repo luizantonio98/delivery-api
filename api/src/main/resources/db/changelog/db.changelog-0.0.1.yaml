@@ -1,0 +1,206 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: JandersonCRB
+      changes:
+        - createTable:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: pokemon_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_types_pokemon_id
+                    references: pokemons(id)
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: normal
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name
+                  value: fighting
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: name
+                  value: flying
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: name
+                  value: poison
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 5
+              - column:
+                  name: name
+                  value: normal
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 6
+              - column:
+                  name: name
+                  value: ground
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 7
+              - column:
+                  name: name
+                  value: rock
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 8
+              - column:
+                  name: name
+                  value: bug
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 9
+              - column:
+                  name: name
+                  value: ghost
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 10
+              - column:
+                  name: steel
+                  value: normal
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 11
+              - column:
+                  name: fire
+                  value: normal
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 12
+              - column:
+                  name: water
+                  value: normal
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 13
+              - column:
+                  name: name
+                  value: grass
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 14
+              - column:
+                  name: name
+                  value: electric
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 15
+              - column:
+                  name: name
+                  value: psychic
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 16
+              - column:
+                  name: name
+                  value: ice
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 17
+              - column:
+                  name: name
+                  value: dragon
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 18
+              - column:
+                  name: name
+                  value: fairy
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 19
+              - column:
+                  name: name
+                  value: unknown
+        - insert:
+            tableName: types
+            columns:
+              - column:
+                  name: id
+                  value: 20
+              - column:
+                  name: name
+                  value: shadow
