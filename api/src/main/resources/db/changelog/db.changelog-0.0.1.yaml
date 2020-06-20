@@ -18,6 +18,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
                   name: password
                   type: varchar(255)
               - column:
@@ -37,6 +43,12 @@ databaseChangeLog:
               - column:
                   name: color
                   value: 'FF0000'
+              - column:
+                  name: email
+                  value: 'joao@gmail.com'
+              - column:
+                  name: password
+                  value: '123456'
 
 
         - createTable:

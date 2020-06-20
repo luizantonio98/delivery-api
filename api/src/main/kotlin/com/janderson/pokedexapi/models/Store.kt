@@ -1,5 +1,6 @@
 package com.janderson.pokedexapi.models
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import javax.persistence.*
 
 @Entity
@@ -7,11 +8,18 @@ import javax.persistence.*
 data class Store(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long,
+        val id: Long?,
 
         @Column(name = "name")
-        val name: String,
+        val name: String?,
 
         @Column(name = "color")
-        val color: String
+        val color: String?,
+
+        @Column(name = "email")
+        val email: String?,
+
+        @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+        @Column(name = "password")
+        val password: String?
 )
